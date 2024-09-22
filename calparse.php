@@ -1,12 +1,12 @@
 <?php
-// this script goes through a ical file to create one file per day
-// Only interest is VEVENTS, and adding them to a new or existing file for the day concerned. Multiday events are ignored for now
-// In its first run keeping it basic
-// written by Ton Zijlstra https://www.zylstra.org/blog, public domain
+// this script goes through a ics file to create one file per day
+// Only interest is VEVENTS, and adding them to a new or existing file for the day concerned. Multiday events are ignored
+// 
+// written by Ton Zijlstra https://www.zylstra.org/blog, CC zero, public domain dedication
 
-// open calfile
+// open ics calendar export file
 
-if ($file = fopen("tonwerkkopie.ics", "r")) {
+if ($file = fopen("yourexportfilename.ics", "r")) {
     while(! feof($file)) {
     $line = fgets($file); // read a line
     if (startsWith($line, 'BEGIN:VEVENT')) { // we've got an event
@@ -86,7 +86,7 @@ if (!file_exists($fileloc)){
 $filebegin ="#".$jaar."/".$maand."/".$dag."\n \n# Gedaan \n";
 $schrijffile =$filebegin.$lijnactiviteit." \n";
  }
-// if it does exsit append new line
+// if it does exist append new line
 if ($jaar=="/Ams") echo $schrijffile." gaat niet goed<br/>";
 if ($jaar=="/Par") echo $schrijffile." gaat niet goed<br/>";
 file_put_contents($fileloc, $schrijffile, FILE_APPEND);
